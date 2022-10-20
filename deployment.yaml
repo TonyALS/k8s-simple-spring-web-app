@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-web-deployment
+  labels:
+    app: spring-web-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: spring-web-service
+  template:
+    metadata:
+      labels:
+        app: spring-web-service
+    spec:
+      containers:
+      - name: spring-web-service
+        image: tonyals/simple-spring-web-app:latest
+        ports:
+        - containerPort: 8080
